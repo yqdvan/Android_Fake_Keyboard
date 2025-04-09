@@ -139,7 +139,7 @@ while IFS= read -r -n1 char; do
         # 如果是 = 
         echo "equal " | /data/local/tmp/hid-gadget-test/hid-gadget-test /dev/hidg0 keyboard
 
-    elif [ "$cur_char" = ">" ]; then
+    elif [ "$cur_char" = "+" ]; then
         # 如果是 +
         echo "left-shift equal " | /data/local/tmp/hid-gadget-test/hid-gadget-test /dev/hidg0 keyboard
 
