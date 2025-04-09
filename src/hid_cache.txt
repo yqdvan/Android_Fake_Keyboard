@@ -1,0 +1,32 @@
+#!/bin/sh
+
+target_dir="pre_cmt_tmp"  # 目标目录名
+
+# 1. 检查目录是否存在
+if [ ! -d "$target_dir" ]; then
+    echo "Error: Directory '$target_dir' does not exist." >&2
+    exit 1
+fi
+
+# 2. 获取当前目录的绝对路径
+current_dir=$(pwd)  # 或者使用 `realpath .`（更严格）
+
+# 3. 遍历目录下的所有文件，构造带绝对路径的文件名列表
+fname=""  # 初始化变量
+first_file=true  # 标记是否是第一个文件（避免前导空格）
+
+for file in "$target_dir"/*; do
+    if [ -f "$file" ]; then  # 只处理普通文件（不包括目录）
+        abs_path="$current_dir/$file"  # 构造完整路径
+        if [ "$first_file" = true ]; then
+            fname="$abs_path"  # 第一个文件不加空格
+            first_file=false
+        else
+            fname="$fname $abs_path"  # 后续文件加空格拼接
+        fi
+    fi
+done
+
+# 4. 输出结果
+echo "All files in $target_dir (with absolute paths):"
+echo "$fname"
