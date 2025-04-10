@@ -23,6 +23,8 @@ finally {
     $webclient.Dispose()
 }
 
+Start-Sleep -Seconds 2
+
 # 在最后添加以下内容
-Write-Host "按任意键继续..."
-[Console]::ReadKey($true) | Out-Null
+# Write-Host "按任意键继续..."
+# [Console]::ReadKey($true) | Out-Null
