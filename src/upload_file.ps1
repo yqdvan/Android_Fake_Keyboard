@@ -1,5 +1,5 @@
 ﻿# FTP上传脚本 - 强制覆盖文件
-$ftpServer = "ftp://192.168.137.67:2121/Download/hid_cache.txt"
+$ftpServer = "ftp://192.168.137.126:2121/Download/hid_cache.txt"
 $username = ""
 $password = ""
 $filePath = "hid_cache.txt"

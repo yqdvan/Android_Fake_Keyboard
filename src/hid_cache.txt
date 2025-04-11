@@ -1,1 +1,2 @@
-1234567890Get all txt files matching the pattern in mtlb_data directory
+ar3 = ar1;              % Copy original array
+ar3(1:2:end) = 0;       % Set every other element starting from 1st to 0
