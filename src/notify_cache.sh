@@ -1,8 +1,17 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+termux-wake-lock
+
+termux-notification \
+	--id monitor_notification \
+	--title "keep going..." \
+	--content "monite cache.txt" \
+	--ongoing
+
 # 文件配置
-WATCH_FILE="/storage/emulated/0/Download/aaa.txt"
-TARGET_SCRIPT="$HOME/fuc.sh"  # 使用绝对路径更可靠
+WATCH_FILE="/storage/emulated/0/Download/hid_cache.txt"
+#TARGET_SCRIPT="$HOME/fuc.sh"  # 使用绝对路径更可靠
+TARGET_SCRIPT="/data/data/com.termux/files/home/.shortcuts/run_su.sh"  # 使用绝对路径更可靠
 
 # 确保inotifywait可用
 if ! command -v inotifywait &>/dev/null; then
@@ -23,10 +32,4 @@ echo "触发脚本: $TARGET_SCRIPT"
 inotifywait -m -e close_write,modify,move_self --format '%e' "$WATCH_FILE" |
 while read -r events; do
     # 避免重复触发
-    if [[ "$events" == *"CLOSE_WRITE"* || "$events" == *"MODIFY"* ]]; then
-        echo "$(date '+%Y-%m-%d %H:%M:%S') 文件被修改，执行脚本..."
-        # 添加延迟避免文件未完全写入
-        sleep 0.5
-        bash "$TARGET_SCRIPT" &
-    fi
-done
+    if [[ "$even
